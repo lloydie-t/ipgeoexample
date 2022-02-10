@@ -13,12 +13,13 @@ class CreateGeoipTable extends Migration
      */
     public function up()
     {
-        Schema::create('geoip', function (Blueprint $table) {
+        Schema::create('geoips', function (Blueprint $table) {
             $table->id();
             $table->char('ip_address', 20);
             $table->char('iso_code',10);
             $table->char('country_code',10);
             $table->string('country_name');
+            $table->string('town')->nullable();
             $table->timestamps();
         });
     }

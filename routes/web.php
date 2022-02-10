@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NetworkController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,8 @@ use App\Http\Controllers\NetworkController;
 |
 */
 
-Route::get('/', function () {
-    return view('geoip');
-});
-
+//Route::get('/', function () {
+//    return view('geoip');
+//});
+Route::get('/', [HomeController::class, 'index']);
 Route::any('/ajax/Network/getIPGeo', [NetworkController::class, 'getIPGeo']);

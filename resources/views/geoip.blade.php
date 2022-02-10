@@ -32,22 +32,35 @@
         }
     </style>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/flag-icons.min.css') }}" rel="stylesheet">
 </head>
 
 <body class="text-center">
-    <main class="form-geoip">
-        <form>
-            @csrf
-            <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <div class="container">
+        <main class="form-geoip">
+            <form>
+                @csrf
+                <img class="mb-4" src="{{ asset('img/LT_cari.jpg') }}" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 fw-normal">Lloyd's IP Geolocator</h1>
 
-            <div class="form-floating">
-                <input type="text" class="form-control" id="ip_address" name="ip_address" placeholder="123.456.789.123">
-                <label for="ip_address">IP address</label>
+                <div class="form-floating">
+                    <input type="text" class="form-control border" id="ip_address" name="ip_address"
+                        value="{{$ip_address}}" placeholder="{{$ip_address}}">
+                    <label for="ip_address">Enter IP address</label>
+                </div>
+                <div class="text-danger d-none" id="error"> There was an error</div>
+                <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Get Location</button>
+            </form>
+            <div id="flag-loading" class="mt-2 d-none">
+                <span class="spinner-border spinner-border-sm" role="status"></span>
+                <span>Getting Location</span>
             </div>
-            <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Get Location</button>
-        </form>
-    </main>
+            <div id="flag-result" class="mt-2 d-none">
+                <span id="flag-image" class="fi fi-gb"></span>
+                <span>This IP address (<span id="ip_result"></span>) is located in <span id="ip_country"></span></span>
+            </div>
+        </main>
+    </div>
 </body>
 <script src="{{ asset('js/geoip.js') }}"></script>
 
